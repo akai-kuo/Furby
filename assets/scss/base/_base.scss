@@ -1,0 +1,19 @@
+/* 標籤的基本樣式 */
+body {
+  letter-spacing: 0.02em;
+  background: linear-gradient(to bottom, #f8bd70, #fdf1ec, #7ec8b2);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+}
+
+p {
+  margin-bottom: 0;
+}

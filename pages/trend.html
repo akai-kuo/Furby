@@ -4,12 +4,233 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Chart.js v2.9.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
     <title>about</title>
   </head>
   <body>
-    <%- include('./layout/header'); -%>
-    <h1>我是about</h1>
-    <%- include('./layout/footer'); -%>
+    <!-- header 
+    <%- include('./layout/header'); -%>  -->
+    <main class="container">
+      <!-- user -->
+      <div class="py-4 mb-5">
+        <img src="../assets/images/dog.png" alt="dog" class="user-image rounded-circle me-5" />
+        <img src="../assets/images/cat.png" alt="cat" class="user-image rounded-circle" />
+      </div>
+      <!-- 減重計畫 -->
+      <div class="d-flex rounded-3 mb-7">
+        <img src="../assets/images/brand-1.png" alt="brand-1" class="brand-img" />
+        <div class="p-4">
+          <h3 class="mb-3">減重計畫</h3>
+          <div class="p-3">
+            <p>Ｍica 的體重穩定下降中，繼續保持 ～</p>
+          </div>
+        </div>
+      </div>
+      <!-- 體重變化 -->
+      <div class="mb-6">
+        <div class="d-flex justify-content-between mb-3">
+          <h2 class="fs-3 py-3">體重變化</h2>
+          <a href="#" class="text-primary-800">
+            看更多
+            <span class="material-icons-outlined"> arrow_forward </span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-between bg-white rounded-3 mb-3 p-5 text-neutral-900">
+          <div>
+            <h3 class="mb-2">體重減少</h3>
+            <p>2025/07/20-2025/07/26</p>
+          </div>
+          <div class="d-flex">
+            <p class="me-2 fs-3">0.25</p>
+            <p>kg</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3 p-6">
+          <h4 class="text-neutral-500">體重減少</h4>
+          <div class="d-flex">
+            <p class="fs-4 text-neutral-900">2.1</p>
+            <p class="text-neutral-900">%</p>
+          </div>
+        </div>
+      </div>
+      <!-- 熱量消耗 -->
+      <div class="mb-6">
+        <div class="d-flex justify-content-between mb-3">
+          <h2 class="fs-3 py-3">熱量消耗</h2>
+          <a href="#" class="text-primary-800">
+            看更多
+            <span class="material-icons-outlined"> arrow_forward </span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-between bg-white rounded-3 mb-3 p-5 text-neutral-900">
+          <div>
+            <h3 class="mb-2">平均消耗</h3>
+            <p>2025/07/20-2025/07/26</p>
+          </div>
+          <div class="d-flex">
+            <p class="me-2 fs-3">387</p>
+            <p>kcal</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3 p-6">
+          <h4 class="text-neutral-500">本週達標</h4>
+          <div class="d-flex">
+            <p class="fs-4 text-neutral-900">3</p>
+            <p class="text-neutral-900">天</p>
+          </div>
+          <div>
+            <canvas id="stackedAreaChart" width="400" height="200"></canvas>
+            <script>
+              var ctx = document.getElementById("stackedAreaChart").getContext("2d");
+
+              new Chart(ctx, {
+                type: "line", // 使用折線圖類型
+                data: {
+                  labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                  datasets: [
+                    {
+                      label: "low_strength",
+                      data: [10, 20, 15, 20, 30, 25, 40],
+                      backgroundColor: "#7EC8B2", // 填充顏色
+                      fill: true, // 啟用填充
+                      lineTension: 0.4,
+                    },
+                    {
+                      label: "medium_strength",
+                      data: [20, 30, 25, 30, 40, 20, 45],
+                      backgroundColor: "#F0D36B",
+                      fill: true,
+                      lineTension: 0.4,
+                    },
+                    {
+                      label: "high_strength",
+                      data: [30, 35, 25, 30, 20, 30, 35],
+                      backgroundColor: "#F39111",
+                      fill: true,
+                      lineTension: 0.4,
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  elements: {
+                    point: {
+                      pointRadius: 0,
+                    },
+                  },
+                  plugins: {
+                    legend: {
+                      display: false, // 隱藏圖例
+                    },
+                  },
+                  scales: {
+                    x: {
+                      stacked: true, // 啟用 X 軸堆疊
+                      grid: {
+                        display: false,
+                      },
+                    },
+                    y: {
+                      stacked: true, // 啟用 Y 軸堆疊
+                      display: false,
+                    },
+                  },
+                },
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+      <!-- 熱量攝取 -->
+      <div class="mb-6">
+        <div class="d-flex justify-content-between mb-3">
+          <h2 class="fs-3 py-3">熱量攝取</h2>
+          <a href="#" class="text-primary-800">
+            看更多
+            <span class="material-icons-outlined"> arrow_forward </span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-between bg-white rounded-3 mb-3 p-5 text-neutral-900">
+          <div>
+            <h3 class="mb-2">平均攝取</h3>
+            <p>2025/07/20-2025/07/26</p>
+          </div>
+          <div class="d-flex">
+            <p class="me-2 fs-3">637</p>
+            <p>kcal</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3 p-6">
+          <h4 class="text-neutral-500">來源佔比</h4>
+          <div class="card">
+            <canvas id="myDoughnutChart" width="400" height="400"></canvas>
+            <script>
+              var ctx = document.getElementById("myDoughnutChart").getContext("2d");
+              const myDoughnutChart = new Chart(ctx, {
+                type: "doughnut", // 圖表類型
+                data: {
+                  labels: ["正餐", "非正餐"], // 標籤
+                  datasets: [
+                    {
+                      label: "數據集",
+                      data: [87, 13], // 資料
+                      backgroundColor: [
+                        "#F39111", // 正餐
+                        "#E6D9D3", // 非正餐
+                      ],
+                      borderWidth: 1,
+                      borderRadius: 16,
+                      spacing: 5,
+                    },
+                  ],
+                },
+                options: {
+                  cutout: "77%",
+                  rotation: 80,
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: false, // 隱藏圖例
+                    },
+                    tooltip: {
+                      enabled: true, // 啟用提示
+                    },
+                  },
+                },
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <!-- 生理數值 -->
+      <div class="mb-6">
+        <div class="d-flex justify-content-between mb-3">
+          <h2 class="fs-3 py-3">生理數值</h2>
+          <a href="#" class="text-primary-800">
+            看更多
+            <span class="material-icons-outlined"> arrow_forward </span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-between bg-white rounded-3 mb-3 p-5 text-neutral-900">
+          <div>
+            <h3 class="mb-2">平均靜止心律</h3>
+            <p>2025/07/20-2025/07/26</p>
+          </div>
+          <div class="d-flex">
+            <p class="me-2 fs-3">70.3</p>
+            <p>bpm</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- footer 
+    <%- include('./layout/footer'); -%>  -->
 
     <script type="module" src="../main.js"></script>
   </body>
